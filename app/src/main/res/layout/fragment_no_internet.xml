@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".NoNetworkConnectivityHelper.NoInternetFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/noInternetImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/no_internet"/>
+
+
+
+
+
+
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/noInternetTextView"
+            android:layout_below="@+id/noInternetImageView"
+            android:fontFamily="@font/poppins"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textPrimary"
+            android:text="No Internet Connection"/>
+
+
+
+
+
+
+
+        <TextView
+
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:id="@+id/proceedToDownloadsTextView"
+            android:layout_below="@+id/noInternetTextView"
+            android:fontFamily="@font/poppins"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/buksuPrimary"
+            android:text="Proceed to downloads"/>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

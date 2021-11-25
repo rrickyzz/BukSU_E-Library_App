@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/buksu"
+    android:padding="50dp"
+    android:background="@color/buksuPrimary"
+    tools:context=".UnverifiedUserLandingActivity">
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/unverifiedpage"/>
+
+    <TextView
+        android:id="@+id/unverifiedUserName"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi Name,"
+        android:textColor="@color/buksuSecondary"
+        android:fontFamily="@font/proxima_extra_bold"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/accountNotVerified"
+        android:textColor="@color/buksuSecondary"/>
+
+    <com.example.myloadingbutton.MyLoadingButton
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:id="@+id/sendEmailVerification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mlb_labelSize="7sp"
+        app:mlb_label="Send Another Verification"
+        app:mlb_backgroundColor="@color/buksuSecondary"
+        app:mlb_labelColor="@color/white"
+        app:mlb_loaderColor="@color/white"
+        app:mlb_setNormalAfterError="false"
+        app:mlb_animationDuration="300"
+        app:mlb_setErrorIcon="@drawable/ic_progress_error"
+        app:mlb_setDoneIcon="@drawable/ic_progress_done"
+        />
+
+
+<com.google.android.material.button.MaterialButton
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    app:cornerRadius="20dp"
+    android:text="Sign Out"
+    android:textSize="20sp"
+    android:textColor="@color/buksuSecondary"
+    app:strokeColor="@color/buksuSecondary"
+    android:id="@+id/UbtnSignout"/>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/buksuPrimary"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".SplashScreen">
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/splashscreen_for_e_library"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/splashcreentext"
+        android:textColor="@color/buksuSecondary"
+        android:gravity="center"
+        android:fontFamily="@font/proxima_extra_bold"
+        android:textSize="20sp"
+        />
+
+
+<com.jb.dev.progress_indicator.dotGrowProgressBar
+    android:id="@+id/dotGrowProgressbar"
+    android:layout_width="50dp"
+    android:layout_height="15dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="50dp"
+    android:background="@color/buksuSecondary"
+    android:visibility="invisible"/>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "784856557929",
+    "project_id": "e-library-92ba5",
+    "storage_bucket": "e-library-92ba5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784856557929:android:b714b58c71bfd6a27cb5f8",
+        "android_client_info": {
+          "package_name": "com.dacoders.buksue_libraryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784856557929-fo753c46tv5a5acduhkf5182ut0j9c5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjNNsveW3kgDlCMl3nwZmfA-nUoVOCn38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784856557929-fo753c46tv5a5acduhkf5182ut0j9c5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

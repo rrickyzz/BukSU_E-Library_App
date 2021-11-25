@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">BukSU E-Library App</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="create_account">Get\nStarted</string>
+    <string name="step1">Step 1</string>
+    <string name="verifyemail">verify email</string>
+    <string name="register">register</string>
+    <string name="title_activity_home">Home</string>
+    <string name="progressRight">progressRigth</string>
+    <string name="Signingin">Signing in</string>
+    <string name="noAccountYet">Dont have an account?  Register</string>
+    <string name="forgotpass">Forgot Password</string>
+    <string name="alreadyhaveandacc">Already have an account? Sign in</string>
+    <string name="passwordValidation1">At least 8 characters</string>
+    <string name="passwordValidation2">At least one uppercase [A-Z]</string>
+    <string name="passwordValidation3">At least one lowercase [a-z]</string>
+    <string name="passwordValidation4">At least one number</string>
+    <string name="splashcreentext">Read university library books with no boundaries.</string>
+    <string name="signin">Sign in</string>
+    <string name="dialogTitleRegister">Account has been created successfully.</string>
+    <string name="dialogMessageRegister">A verification message has been sent to the university email you have provided. Check it now in order to get verified.</string>
+    <string name="openEmailApp">Open Email</string>
+    <string name="later">Later</string>
+    <string name="accountNotVerified">\t\t\tYour account is not verified yet. In order to proceed, check the verification message  that has been sent your email account.</string>
+    <string name="dialogTitleNotRegistered">Account registration failed</string>
+    <string name="resetPassword">Reset password</string>
+    <string name="enterNewPass">Enter new password</string>
+    <string name="dialogPasswordResetLinkSent">A confirmation link has been sent to the university email you have provided. Check it now in order to reset your password.</string>
+    <string name="openDrawer">Open drawer</string>
+    <string name="closeDrawer">Close drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="searchAgain"><u>Try searching again with different keyword.</u></string>
+    <string name="elibraryTeam">Bukidnon State University\n E-Library Team</string>
+    <string name="Mission">Innovating University Library of Bukidnon State University for the remote accessibility for its education materials.</string>
+    <string name="formFeedbackHint">Be part of the development of this app by sharing your tips and suggestions.</string>
+    <string name="feedbackMessageBoxHint" />
+
+</resources>

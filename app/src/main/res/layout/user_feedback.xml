@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/buksu"
+
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/feedbackImageview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/feedback"
+        android:layout_marginTop="50dp"/>
+
+
+
+    <EditText
+
+        android:textCursorDrawable="@color/textSecondary"
+        android:textColor="@color/textSecondary"
+        android:minHeight="100dp"
+        android:maxHeight="200dp"
+        android:layout_height="100dp"
+        android:hint="@string/formFeedbackHint"
+        android:layout_margin="20dp"
+        android:layout_below="@id/feedbackImageview"
+        android:id="@+id/feedBackMessageBox"
+        android:layout_width="match_parent"
+         android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine" />
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:gravity="end"
+        android:layout_below="@id/feedBackMessageBox"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_gravity="center"
+            app:cornerRadius="20dp"
+            android:layout_width="100dp"
+            android:lines="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/buksuSecondary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Cancel"
+            android:id="@+id/cancelFeedback"/>
+
+        <com.google.android.material.button.MaterialButton
+           android:enabled="false"
+            android:layout_gravity="center"
+            app:cornerRadius="20dp"
+            android:lines="1"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:textColor="@color/text_color_state_list"
+             android:backgroundTint="@color/download_btn_color_state_list"
+              android:text="Submit"
+            android:id="@+id/submitFeedback"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/changeProfileParentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="50dp"
+    android:orientation="vertical"
+    tools:context=".ChangeProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+
+            android:id="@+id/profilePic_imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/developer"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_linked_camera_24"
+            android:id="@+id/editProfileChangeProfilePicImageView"
+            android:layout_gravity="bottom"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfileDisplayNameEditText"
+            android:text="Display Name"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:id="@+id/editProfileDisplayNameTextView"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_edit_24"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfileFullNameEditText"
+            android:text="Full Name"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_edit_24"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/changeCourseTextView"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Bachelor of Science in Information Technology"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+            <Spinner
+                android:visibility="invisible"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editProfileCourse_spinner"
+                />
+
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/editProfileChangeCourseImageView"
+                android:layout_toRightOf="@id/changeCourseTextView"
+                android:src="@drawable/ic_baseline_edit_24"/>
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/changeYearTextView"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Third Year"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+        <Spinner
+            android:visibility="invisible"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfileYear_spinner"
+            />
+
+
+        <ImageView
+            android:layout_toRightOf="@id/changeYearTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="20dp"
+            android:id="@+id/editProfileChangeYearImageView"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_edit_24"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_marginTop="50dp"
+            app:cornerRadius="20dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/buksuSecondary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Cancel"
+            android:id="@+id/editProfileCancelBtn"/>
+
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editProfileSaveChangesBtn"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/buksuSecondary"
+            android:text="Save Changes"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:cornerRadius="20dp"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

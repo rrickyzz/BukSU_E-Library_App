@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navHeaderParent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/buksuPrimary"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:civ_border_color="@color/buksuSecondary"
+            app:civ_border_width="4dp"
+            android:id="@+id/profilePic_imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/developer" />
+
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:id="@+id/changeProfilePicBtn"
+            android:layout_toRightOf="@id/profilePic_imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_baseline_linked_camera_24"/>
+
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileDisplayNameTextView"
+        android:text="Display Name"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileEmailTextView"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="12sp"/>
+
+
+
+
+
+
+
+</LinearLayout>

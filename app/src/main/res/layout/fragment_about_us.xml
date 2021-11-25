@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DrawerFragments.AboutUsFragment">
+
+
+
+
+
+
+
+    <TableLayout
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/elibraryTeam"
+        android:gravity="center"
+        android:textColor="@color/textSecondary"/>
+
+
+
+
+
+        <TableRow android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dev1kosas"
+                app:civ_border_color="@color/lightGrey"
+                app:civ_border_width="3dp" />
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dev2me"
+                app:civ_border_color="@color/lightGrey"
+                app:civ_border_width="3dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dev3ariel"
+                app:civ_border_color="@color/lightGrey"
+                app:civ_border_width="3dp" />
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center">
+
+
+            <TextView
+                android:fontFamily="@font/poppins_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:text="Rafael C."
+                android:gravity="center"
+                android:textColor="@color/textSecondary"/>
+
+
+            <TextView
+                android:fontFamily="@font/poppins_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Ricky"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/textSecondary"/>
+
+            <TextView
+                  android:fontFamily="@font/poppins_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Ariel A."
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/textSecondary"/>
+
+
+
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center">
+
+
+            <TextView
+                 android:fontFamily="@font/poppins_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:text="Web Dev"
+                android:gravity="center"
+                android:textColor="@color/textSecondary"/>
+
+
+            <TextView
+                 android:fontFamily="@font/poppins_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="Mobile Dev"
+                android:gravity="center"
+                 android:textColor="@color/textSecondary"/>
+
+            <TextView
+                android:fontFamily="@font/poppins_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="UI/UX Designer"
+                android:gravity="center"
+                android:textColor="@color/textSecondary"/>
+
+
+
+
+        </TableRow>
+
+
+
+
+
+        <TableRow android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dev4ryan"
+                app:civ_border_color="@color/lightGrey"
+                app:civ_border_width="3dp" />
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center">
+
+
+            <TextView
+                android:fontFamily="@font/poppins_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="RR Dumpasan."
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/textSecondary"/>
+
+
+
+
+        </TableRow>
+
+
+
+        <TableRow android:gravity="center">
+
+
+            <TextView
+                android:fontFamily="@font/poppins_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:text="Tester"
+                android:gravity="center"
+                android:textColor="@color/textSecondary"/>
+
+
+
+        </TableRow>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Mission"
+            android:gravity="center"
+            android:textColor="@color/textSecondary"/>
+
+        <TextView
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/Mission"
+            android:gravity="center"
+            android:textColor="@color/textSecondary"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </TableLayout>
+
+
+
+
+
+
+
+</FrameLayout>

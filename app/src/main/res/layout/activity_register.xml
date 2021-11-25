@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/buksu"
+    android:background="@color/buksuPrimary"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account"
+            android:textColor="@color/buksuSecondary"
+            android:textSize="@dimen/text_extra_bold"
+            android:fontFamily="@font/proxima_extra_bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/R_TLI_email"
+            app:hintTextColor="@color/buksuSecondary"
+            app:boxStrokeColor="@color/buksuSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/white"
+                android:id="@+id/EtEmail"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="university email address"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:padding="10dp"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/R_TLI_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:hintTextColor="@color/buksuSecondary"
+            app:boxStrokeColor="@color/buksuSecondary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:passwordToggleEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:id="@+id/EtPassword"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="password"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:padding="10dp" />
+
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:cardCornerRadius="9dp"
+                    app:cardBackgroundColor="@color/lightGrey"
+                    android:id="@+id/verifyCardView1">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_checks"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_marginStart="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passwordValidation1"
+                    android:textSize="12sp"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:cardCornerRadius="9dp"
+                app:cardBackgroundColor="@color/lightGrey"
+                android:id="@+id/verifyCardView2">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_checks"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_marginStart="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/passwordValidation2"
+                android:textSize="12sp"
+                />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:cardCornerRadius="9dp"
+                    app:cardBackgroundColor="@color/lightGrey"
+                    android:id="@+id/verifyCardView3">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_checks"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_marginStart="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passwordValidation3"
+                    android:textSize="12sp"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:cardCornerRadius="9dp"
+                    app:cardBackgroundColor="@color/lightGrey"
+                    android:id="@+id/verifyCardView4">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_checks"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_marginStart="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passwordValidation4"
+                    android:textSize="12sp"
+                    />
+            </RelativeLayout>
+
+
+
+        <com.example.myloadingbutton.MyLoadingButton
+            android:layout_marginTop="15dp"
+            android:id="@+id/RbtnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mlb_labelSize="10sp"
+            app:mlb_label="Create Account"
+            app:mlb_backgroundColor="@color/buksuSecondary"
+            app:mlb_labelColor="@color/white"
+            app:mlb_loaderColor="@color/white"
+            app:mlb_setNormalAfterError="false"
+            app:mlb_animationDuration="300"
+            app:mlb_setErrorIcon="@drawable/ic_progress_error"
+            app:mlb_setDoneIcon="@drawable/ic_progress_done"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/R_tv_login"
+            android:text="@string/alreadyhaveandacc"
+            android:textColor="@color/buksuSecondary"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

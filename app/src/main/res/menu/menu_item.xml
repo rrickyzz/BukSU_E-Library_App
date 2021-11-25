@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="General">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_profile"
+                android:title="Profile"
+                android:icon="@drawable/ic_baseline_account_box_24"/>
+
+
+        </menu>
+
+    </item>
+
+
+
+
+    <item android:title="Communicate">
+
+        <menu>
+            <item
+                android:id="@+id/menu_feedback"
+                android:title="Send feedback"
+                android:icon="@drawable/ic_baseline_feedback_24"/>
+
+            <item
+                android:id="@+id/menu_about_us"
+                android:title="About us"
+                android:icon="@drawable/ic_baseline_info_24"/>
+
+            <item android:id="@+id/menu_logout"
+                android:title="Log out"
+                android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+
+        </menu>
+
+    </item>
+
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".TabFragments.SearchFragment">
+
+
+
+        <com.mancj.materialsearchbar.MaterialSearchBar
+            android:layout_marginBottom="100dp"
+            android:layout_centerVertical="true"
+            app:mt_placeholderColor="@color/textSecondary"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="4dp"
+            app:mt_hintColor="@color/textSecondary"
+            app:mt_textColor="@color/textSecondary"
+            style="@style/MaterialSearchBarLight"
+            app:mt_speechMode="true"
+            app:mt_hint="Search Here"
+            app:mt_placeholder="Search Here."
+            app:mt_maxSuggestionsCount="10"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:id="@+id/searchBar">
+
+        </com.mancj.materialsearchbar.MaterialSearchBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_toEndOf="@+id/searchBar"
+            android:layout_marginTop="40dp"
+            android:id="@+id/floatingActionBtnSearch"
+            android:layout_toRightOf="@+id/searchBar"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buksuSecondary"
+            android:clickable="true"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_baseline_search_24" />
+
+
+
+
+
+
+
+</RelativeLayout>

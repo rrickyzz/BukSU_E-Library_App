@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme"
+    android:background="@color/white"
+    android:layout_gravity="center"
+    android:layout_height="580dp"
+
+    tools:context=".BookAccess.BookOptions">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_margin="50dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/pdf" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/bookOptionsBookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sample Book"
+            android:textColor="@color/textSecondary"
+            android:fontFamily="@font/poppins"
+            android:textSize="21sp"/>
+
+
+        <TextView
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:id="@+id/bookOptionsBookAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: Ryan Rey Anasco"
+            android:textColor="@color/textSecondary"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"/>
+
+        <LinearLayout
+
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+            <com.google.android.material.button.MaterialButton
+
+                android:layout_gravity="center"
+                app:cornerRadius="20dp"
+                android:layout_width="120dp"
+                android:lines="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/buksuSecondary"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="Read Book"
+                android:id="@+id/bookOptionsReadBtn"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_gravity="center"
+                app:cornerRadius="20dp"
+                android:lines="1"
+                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/download_btn_color_state_list"
+                android:text="Download"
+                android:id="@+id/bookOptionsDownloadBtn"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
