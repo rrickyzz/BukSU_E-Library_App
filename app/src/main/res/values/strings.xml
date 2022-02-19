@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BukSU E-Library App</string>
+    <string name="app_name">BukSU E-Library</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="create_account">Get\nStarted</string>
     <string name="step1">Step 1</string>
@@ -35,5 +35,6 @@
     <string name="Mission">Innovating University Library of Bukidnon State University for the remote accessibility for its education materials.</string>
     <string name="formFeedbackHint">Be part of the development of this app by sharing your tips and suggestions.</string>
     <string name="feedbackMessageBoxHint" />
+    <string name="searchViewPlaceholder">Search book here.</string>
 
 </resources>

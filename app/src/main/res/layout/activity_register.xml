@@ -93,10 +93,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
+
                     android:layout_marginStart="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/passwordValidation1"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     />
 
@@ -127,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/passwordValidation2"
                 android:textSize="12sp"
+                android:textColor="@color/white"
                 />
             </RelativeLayout>
 
@@ -155,6 +158,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/passwordValidation3"
                     android:textSize="12sp"
+                    android:textColor="@color/white"
                     />
             </RelativeLayout>
 
@@ -183,6 +187,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/passwordValidation4"
                     android:textSize="12sp"
+                    android:textColor="@color/white"
                     />
             </RelativeLayout>
 

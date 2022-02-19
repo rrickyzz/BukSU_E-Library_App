@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dacoders.buksue_libraryapp.Book.BookModelClass;
 import com.dacoders.buksue_libraryapp.CollectionDataAccessObject.Collection_DAO;
 import com.dacoders.buksue_libraryapp.R;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -39,7 +40,7 @@ public class ReadBookFromUrlFragment extends Fragment {
     com.jb.dev.progress_indicator.dotGrowProgressBar progressBar;
 
 
-    public ReadBookFromUrlFragment(Collection_DAO book){
+    public ReadBookFromUrlFragment(BookModelClass book){
         this.url=book.getFileUrl();
         this.bookTitle=book.getTitle();
         this.bookAuthor=book.getAuthor();

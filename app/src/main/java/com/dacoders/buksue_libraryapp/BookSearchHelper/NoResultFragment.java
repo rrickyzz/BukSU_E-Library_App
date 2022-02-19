@@ -73,15 +73,8 @@ public class NoResultFragment extends Fragment {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_no_result, container, false);
         textView = view.findViewById(R.id.noResultFoundTextView);
-        searchAgain = view.findViewById(R.id.noResultFoundSearchAgainTextView);
         textView.setText(textView.getText()+"\" "+key+"\" ");
-        searchAgain.setOnClickListener(click->{
 
-            AppCompatActivity activity = (AppCompatActivity) view.getContext();
-            Fragment searchFragment = new SearchFragment();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, searchFragment).addToBackStack(null).commit();
-
-        });
         return view;
 
 

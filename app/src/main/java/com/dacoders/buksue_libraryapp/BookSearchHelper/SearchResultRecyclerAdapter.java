@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dacoders.buksue_libraryapp.Book.BookModelClass;
 import com.dacoders.buksue_libraryapp.BookAccess.BookOptions;
 import com.dacoders.buksue_libraryapp.CollectionDataAccessObject.Collection_DAO;
 import com.dacoders.buksue_libraryapp.R;
@@ -19,19 +20,16 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import java.util.List;
 
-public class SearchResultRecyclerAdapter extends FirebaseRecyclerAdapter<Collection_DAO,SearchResultRecyclerAdapter.SearchResultViewHolder>  {
+import me.grantland.widget.AutofitTextView;
+
+public class SearchResultRecyclerAdapter extends FirebaseRecyclerAdapter<BookModelClass,SearchResultRecyclerAdapter.SearchResultViewHolder>  {
 
 
 
     AppCompatActivity activity;
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public SearchResultRecyclerAdapter(@NonNull FirebaseRecyclerOptions<Collection_DAO> options) {
-        super(options);
+
+    public SearchResultRecyclerAdapter(FirebaseRecyclerOptions<BookModelClass> bookModelClassFirebaseRecyclerOptions) {
+        super(bookModelClassFirebaseRecyclerOptions);
     }
 
 
@@ -48,15 +46,12 @@ public class SearchResultRecyclerAdapter extends FirebaseRecyclerAdapter<Collect
 
 
     @Override
-    protected void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position, @NonNull Collection_DAO model) {
+    protected void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position, @NonNull BookModelClass model) {
 
 
 
-        holder.title.setText("Title: "+model.getTitle());
-        holder.category.setText("Category: "+model.getCategory());
-        holder.author.setText("Author: "+model.getAuthor());
-
-
+       holder.title.setText(model.getTitle());
+       holder.author.setText(model.getAuthor());
 
 
 
@@ -75,15 +70,15 @@ public class SearchResultRecyclerAdapter extends FirebaseRecyclerAdapter<Collect
 
 
         View frame;
-        TextView title,category,author;
+        AutofitTextView title,author;
 
 
         public SearchResultViewHolder(@NonNull View itemView) {
             super(itemView);
             frame = itemView.findViewById(R.id.search_result_item_frame);
-            title = itemView.findViewById(R.id.search_result_item_Title);
-            category = itemView.findViewById(R.id.search_result_item_category);
-            author = itemView.findViewById(R.id.search_result_item_author);
+            title = itemView.findViewById(R.id.searchResultItemBookTitle);
+            author = itemView.findViewById(R.id.searchResultItemBookAuthor);
+
         }
     }
 }

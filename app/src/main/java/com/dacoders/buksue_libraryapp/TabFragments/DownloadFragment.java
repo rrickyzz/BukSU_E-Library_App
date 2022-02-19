@@ -1,5 +1,9 @@
 package com.dacoders.buksue_libraryapp.TabFragments;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -10,11 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dacoders.buksue_libraryapp.CollectionDataAccessObject.Collection_DAO;
+import com.dacoders.buksue_libraryapp.FileDownloadHelper.DownloadService;
 import com.dacoders.buksue_libraryapp.FileDownloadHelper.DownloadsAdapter;
 import com.dacoders.buksue_libraryapp.FileDownloadHelper.NoDownloadsFragment;
 import com.dacoders.buksue_libraryapp.R;
@@ -31,14 +39,39 @@ import java.util.List;
  */
 public class DownloadFragment extends Fragment {
 
-
+    DownloadService service;
     List<Collection_DAO> dlList;
     File[] fileList;
     RecyclerView recyclerView;
+    private boolean isBound = false;
+    TextView textView;
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            DownloadService.LocalBinder binder = (DownloadService.LocalBinder) iBinder;
+            service = binder.getDownloadService();
+            isBound = true;
+
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+            isBound = false;
+
+
+        }
+    };
 
     public DownloadFragment(List<Collection_DAO> dlList) {
         this.dlList = dlList;
+
+
+
     }
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,6 +113,11 @@ public class DownloadFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        Intent intent = new Intent(getActivity(), DownloadService.class);
+
+        getActivity().bindService(intent,connection,Context.BIND_AUTO_CREATE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -89,7 +127,7 @@ public class DownloadFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_download, container, false);
         recyclerView = view.findViewById(R.id.downloadsRecyclerView);
-
+        textView = view.findViewById(R.id.downloadLabel);
         fileList = getAllDownloadedFiles();
 
         //go to 'no downloads' fragment if there is no downloads yet
@@ -136,4 +174,6 @@ public class DownloadFragment extends Fragment {
         return dir.listFiles();
 
     }
+
+
 }

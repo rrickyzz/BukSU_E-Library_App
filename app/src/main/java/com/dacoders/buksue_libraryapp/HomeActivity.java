@@ -2,19 +2,18 @@ package com.dacoders.buksue_libraryapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,6 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -42,15 +42,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dacoders.buksue_libraryapp.CollectionAdapter.CollectionMainRecyclerAdapter;
-import com.dacoders.buksue_libraryapp.CollectionModel.Category;
+import com.dacoders.buksue_libraryapp.BookAccess.BookOptions;
+import com.dacoders.buksue_libraryapp.BookSearchHelper.SearchResultFragment;
 import com.dacoders.buksue_libraryapp.DrawerFragments.AboutUsFragment;
 import com.dacoders.buksue_libraryapp.DrawerFragments.ProfileFragment;
 import com.dacoders.buksue_libraryapp.NoNetworkConnectivityHelper.NetworkChangeReceiver;
 import com.dacoders.buksue_libraryapp.NoNetworkConnectivityHelper.NoInternetFragment;
-import com.dacoders.buksue_libraryapp.TabFragments.HomeFragment;
+import com.dacoders.buksue_libraryapp.TabFragments.BookCollectionFragment;
 import com.dacoders.buksue_libraryapp.TabFragments.DownloadFragment;
-import com.dacoders.buksue_libraryapp.TabFragments.SearchFragment;
+import com.dacoders.buksue_libraryapp.TabFragments.NewsFeedFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -68,23 +68,29 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
+
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity implements NetworkChangeReceiver.ReceiverListener {
 
+    private static final int PERMISSION_CODE_READ_DOWNLOAD = 1 ;
+    private static final int RESULT_SPEECH_OK = 2;
+    private boolean hasGrantedAccessToReadStorageForDownloads = false;
     private boolean ConnectedToNetwork;
     private  boolean isDownloadFragment;
     private RecyclerView categoryTitleRecycler;
-    CollectionMainRecyclerAdapter categoryRecyclerAdapter;
      Dialog dialog2;   //variable for uploading pic
-
+    MaterialSearchBar searchBar;
     private  String profilePicLink;
     private  FirebaseAuth mauth;
     private ActionBarDrawerToggle toggle;
@@ -98,13 +104,13 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
     private  static final int IMAGE_PICK_CODE = 1000;
     private  static final int PERMISSION_CODE = 1001;
     private  static final int IMAGE_CAPTURE_CODE = 1001;
+
     private CircleImageView profilePic;
     private View headerParentLayout ;
     private TextView displayName;
     private ImageView changeDp;
     private TextView universityEmailTextView;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    private com.jb.dev.progress_indicator.dotGrowProgressBar progressBar;
 
 
     @Override
@@ -114,6 +120,15 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
         mauth = FirebaseAuth.getInstance();
         initToolBarAndDrawer();
         checkConnection(); // check internet connectivity
+    //this code handles  clicks from notification bar for downloads.
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            if(bundle.get("from").equals("download service")){
+                Toast.makeText(this, bundle.get("from").toString(), Toast.LENGTH_SHORT).show();
+                Fragment fragment = new DownloadFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            }
+        }
 
         checkIfUserHasInfoInDatabase();
 
@@ -183,18 +198,6 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
     }
 
 
-    private void initCategoryRecyclerView(List<Category> categoryList){
-
-           categoryTitleRecycler = findViewById(R.id.collectionMainRecyclerView);
-           RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-           categoryTitleRecycler.setLayoutManager(layoutManager);
-           categoryRecyclerAdapter = new CollectionMainRecyclerAdapter(this,categoryList);
-           categoryTitleRecycler.setAdapter(categoryRecyclerAdapter);
-
-
-
-       }
-
 
 
 
@@ -209,6 +212,62 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
         drawerLayout.addDrawerListener(toggle);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toggle.syncState();
+
+        //initialize searchbar
+        searchBar = toolbar.findViewById(R.id.toolbarSearchBar);
+        searchBar.hideSuggestionsList();
+
+
+        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+
+
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+
+
+
+
+                //  searchBook(text,searchFilterList);
+
+                if(!searchBar.getText().isEmpty()) {
+                    Fragment searchResultFragment = new SearchResultFragment(String.valueOf(text).trim());
+                    HomeActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, searchResultFragment).addToBackStack(null).commit();
+
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+                switch (buttonCode){
+                    case MaterialSearchBar.BUTTON_NAVIGATION:
+                        // drawer.openDrawer(Gravity.LEFT);
+
+                        break;
+                    case MaterialSearchBar.BUTTON_SPEECH:
+
+                        openVoiceRecognizer();
+                }
+
+            }
+        });
+
+
+
+
         bottomNavigationView = findViewById(R.id.bottomNavView);
         navigationView = findViewById(R.id.navView);
         headerParentLayout = navigationView.getHeaderView(0);
@@ -217,9 +276,10 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
         universityEmailTextView = headerParentLayout.findViewById(R.id.profileEmailTextView);
         changeDp = headerParentLayout.findViewById(R.id.changeProfilePicBtn);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NewsFeedFragment()).addToBackStack(null).commit();
         isDownloadFragment=false;
-        bottomNavigationView.setSelectedItemId(R.id.bottom_nav_home);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_nav_feed);
 
 
         //init profile pic
@@ -237,8 +297,7 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @SuppressLint("ResourceAsColor")
+           @SuppressLint("ResourceAsColor")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -337,34 +396,47 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
                 switch (item.getItemId()) {
                     case R.id.bottom_nav_home:
-
-                        fragment = new HomeFragment();
+                    searchBar.setVisibility(View.VISIBLE);
+                    searchBar.setHint("Search Book here");
+                    searchBar.setPlaceHolder("Search Book here");
+                        fragment = new BookCollectionFragment();
                         isDownloadFragment = false;
 
 
                         break;
 
-                    case R.id.bottom_nav_search:
-                        fragment = new SearchFragment();
+                    case R.id.bottom_nav_feed:
+                        searchBar.setVisibility(View.VISIBLE);
+                        searchBar.setHint("Search Book here");
+                        searchBar.setPlaceHolder("Search Book here");
+                        fragment = new NewsFeedFragment();
                         isDownloadFragment = false;
 
                         break;
 
                     case R.id.bottom_nav_downloads:
-                        fragment = new DownloadFragment();
-                        isDownloadFragment = true;
+                        //check for permission read storage for downloads
+                        checkPermissionForDownloads();
+                        searchBar.setVisibility(View.INVISIBLE);
 
+
+                        if(hasGrantedAccessToReadStorageForDownloads){
+                            fragment = new DownloadFragment();
+                        isDownloadFragment = true; }
+                        else{  Toast.makeText(HomeActivity.this, "Permission to read storage for downloads is not granted.", Toast.LENGTH_SHORT).show();
+                           fragment =  new BookCollectionFragment();
+                        }
                         break;
                 }
 
                 if(ConnectedToNetwork){
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();  }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();  }
 
 
                 else if(isDownloadFragment){
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();  }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();  }
 
 
 
@@ -402,7 +474,6 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
 
     @SuppressLint("ResourceAsColor")
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void createRatingDialog(){
         final Dialog dialog = new Dialog(HomeActivity.this);
         dialog.setCancelable(false);
@@ -616,7 +687,14 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
                 // loading that data into profilePic
                 // variable which is ImageView
-                Picasso.get().load(profilePicLink).into(profilePic);
+                if(profilePicLink!=null){
+                    Picasso.get().load(profilePicLink).into(profilePic);
+
+                }else{
+                    profilePic.setImageResource(R.drawable.ic_sharp_account_circle_24);
+
+                }
+               profilePic.setVisibility(View.VISIBLE);
             }
 
             // this will called when any problem
@@ -663,6 +741,7 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
                 // after getting the value we are setting
                 // our value to our text view in below line.
                 displayName.setText(value);
+
             }
 
             @Override
@@ -690,6 +769,7 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
                 // after getting the value we are setting
                 // our value to our text view in below line.
                 displayName.setText(displayName.getText()+" "+value);
+                displayName.setVisibility(View.VISIBLE);
             }  @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // calling on cancelled method when we receive
@@ -766,9 +846,10 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
                         break;
 
                 }
+
                 // submit details
                 addUserInfoToRealtimeDatabase(
-                                                mauth.getUid(),
+                                               mauth.getUid(),
                                                input_ID.getEditText().getText().toString().trim(),
                                                "",
                                                input_firstName.getEditText().getText().toString().trim(),
@@ -900,13 +981,14 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
         dialog2 = new Dialog(HomeActivity.this);
         dialog2.setCancelable(false);
         dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog2.setContentView(R.layout.dialog_upload_profile_pic);
+        dialog2.setContentView(R. layout.dialog_upload_profile_pic);
         final MaterialButton btn_uploadPicFromGallery = dialog2.findViewById(R.id.uploadFromGallery);
         final MaterialButton btn_capturePhoto = dialog2.findViewById(R.id.captureProfilePic);
-        ImageView closeBTn = dialog2.findViewById(R.id.closeDialogUpload);
+        final ImageView closeBTn = dialog2.findViewById(R.id.closeDialogUpload);
 
         closeBTn.setOnClickListener(click->{
             dialog2.dismiss();
+
         });
 
         btn_capturePhoto.setOnClickListener(new View.OnClickListener() {
@@ -928,6 +1010,7 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
                 dialog2.dismiss();
             }
         });
+        dialog2.create();
         dialog2.show();
     }
 
@@ -971,6 +1054,8 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
 
 
+
+
     private void uploadImageForProfile(){
          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
              if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
@@ -985,6 +1070,22 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
          }
 
 
+
+    }
+
+    private  void checkPermissionForDownloads(){
+
+          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+              if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                  String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                  requestPermissions(permissions, PERMISSION_CODE_READ_DOWNLOAD);
+              }
+              else{
+
+                  hasGrantedAccessToReadStorageForDownloads = true;
+
+              }
+          }
 
     }
 
@@ -1006,8 +1107,25 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
                     Snackbar.make(linearLayout,"Permission Access Denied", Snackbar.LENGTH_LONG).show();
                 }
             }
+
+            case  PERMISSION_CODE_READ_DOWNLOAD: {
+
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    hasGrantedAccessToReadStorageForDownloads = true;
+
+
+
+
+                }
+
+                }
+
+
+                }
+
         }
-    }
+
 
     private  void pickImage(){
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -1023,6 +1141,7 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
             if(isGalleryOpen) {
                // profilePic.setImageURI(data.getData());
               //  System.out.println("Adding image to db");
+                dialog2.dismiss();
                 addProfileImageToStorage(data.getData());
                // image_uri = data.getData();
             }
@@ -1031,11 +1150,53 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
             if(isCamOpen){
               //  profilePic.setImageURI(image_uri);
 
+
+
              //   System.out.println("Adding image to db");
+                dialog2.dismiss();
                addProfileImageToStorage(image_uri);
 
             }
+
+
+                if(resultCode == RESULT_SPEECH_OK && data!=null ){
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    searchBar.setText(result.get(0));
+                    if(!searchBar.getText().isEmpty()) {
+
+
+                        Fragment searchResultFragment = new SearchResultFragment(searchBar.getText().trim());
+                        this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, searchResultFragment).addToBackStack(null).commit();
+
+                    }
+                }
         }
+    }
+
+    private void recordStudentDateRegistered(String uid,String universityId,String college){
+
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        // we will get a DatabaseReference for the database root node
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+        LocalDateTime dateTime = LocalDateTime.now();
+
+        int dateRegistered = dateTime.getDayOfMonth();
+        Month monthRegistered = dateTime.getMonth();
+        int yearRegistered =  dateTime.getYear();
+
+
+        DateUserRegisteredModel obj = new DateUserRegisteredModel(universityId,uid,college,dateRegistered,monthRegistered,yearRegistered);
+        //records the date of user registration
+
+        databaseReference.child("StudentDateRegistered").child(uid).setValue(obj).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
     }
 
 
@@ -1043,23 +1204,41 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
     private void addUserInfoToRealtimeDatabase(String uid, String university_id, String profile_pic_link, String firstName, String lastName, String displayName, String mobile, String gender, String college, String year)
     {
-        DBRef dbRef = new DBRef();
+         DBRef dbRef = new DBRef();
         StudentModelClass student = new StudentModelClass(uid,university_id,profile_pic_link,firstName,lastName,displayName,mobile,gender,college,year);
         dbRef.addStudent(student).addOnSuccessListener(suc->{
-            Toast.makeText(this, "New student  has been added successfully.", Toast.LENGTH_SHORT).show();
+          recordStudentDateRegistered(uid,university_id,college);
+            Toast.makeText(this, "Information submitted successfully", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(fail->{
             Toast.makeText(this, "Error"+fail.getMessage(), Toast.LENGTH_SHORT).show();
         });
 
+
+
+
+
+
+
+
     }
 
-    private void addProfileImageToStorage(Uri uri){
-        //progress dialog for uploading image
 
+
+
+    private void addProfileImageToStorage(Uri uri){
+         //progress dialog for uploading image
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dialog2.dismiss();
+            }
+        });
+        dialog2.dismiss();
         SweetAlertDialog loadingDialog = new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
         loadingDialog.setContentText("Uploading photo....");
         loadingDialog.getProgressHelper().setBarColor(R.color.buksuSecondary);
         loadingDialog.setCancelable(false);
+
 
 
 
@@ -1069,9 +1248,12 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
+                dialog2.setCancelable(true);
+                dialog2.cancel();
+                dialog2.hide();
+                dialog2.dismiss();
                 loadingDialog.dismiss();
+
 
 
 
@@ -1198,11 +1380,30 @@ public class HomeActivity extends AppCompatActivity implements NetworkChangeRece
 
         // get connection status
         boolean isConnected = networkInfo != null && networkInfo.isConnectedOrConnecting();
-        // assign it to globar variable
+        // assign it to global variable
 
         ConnectedToNetwork = isConnected;
 
     }
 
+
+    private  void openVoiceRecognizer(){
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+
+        if(intent.resolveActivity(this.getPackageManager())!=null){
+            startActivityForResult(intent,10);
+        }else{
+            Toast.makeText(this, "Speech Recognition is not supported on your current device", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    public static  class ProfileDialog extends DialogFragment {
+            
+    }
 
 }

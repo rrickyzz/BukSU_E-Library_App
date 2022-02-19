@@ -31,9 +31,10 @@
 
 
     <ImageView
+
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_baseline_linked_camera_24"
+        android:src="@drawable/ic_baseline_linked_camera_grey"
         android:layout_gravity="center"/>
 
 

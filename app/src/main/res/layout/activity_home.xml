@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/buksu"
+    android:theme="@style/buksu"
     android:id="@+id/home_activityDrawer"
     tools:context=".HomeActivity">
 
@@ -23,12 +25,38 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/buksuPrimary"
-        android:elevation="4dp"/>
+        android:elevation="4dp">
+
+      <com.mancj.materialsearchbar.MaterialSearchBar
+          android:id="@+id/toolbarSearchBar"
+          app:mt_speechMode="false"
+          app:mt_textColor="@color/white"
+          app:mt_hintColor="@color/white"
+          app:mt_backIconTint="@color/white"
+          app:mt_clearIconTint="@color/white"
+          app:mt_hint="@string/searchViewPlaceholder"
+          app:mt_placeholderColor="@color/white"
+          app:mt_placeholder="@string/searchViewPlaceholder"
+          app:mt_searchBarColor="@color/buksuPrimary"
+          app:mt_searchIconTint="@color/white"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
 
     <RelativeLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
 
 
 
@@ -42,22 +70,13 @@
           app:menu="@menu/bottom_navigation_menu"
           app:labelVisibilityMode="unlabeled"/>
 
+
     </RelativeLayout>
 
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-
-
-        </RelativeLayout>
-
-
-
   </LinearLayout>
+
+
 
   <com.google.android.material.navigation.NavigationView
       android:theme="@style/buksu"

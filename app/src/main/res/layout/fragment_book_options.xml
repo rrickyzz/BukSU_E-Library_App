@@ -2,62 +2,216 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/bookOptionsFrag"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppTheme"
     android:background="@color/white"
-    android:layout_gravity="center"
+    android:layout_margin="20dp"
     android:layout_height="580dp"
 
     tools:context=".BookAccess.BookOptions">
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <LinearLayout
-        android:layout_margin="50dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <ImageView
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:layout_width="170dp"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
+            android:layout_width="120dp"
+            android:layout_height="200dp"
             android:src="@drawable/pdf" />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <me.grantland.widget.AutofitTextView
+                android:padding="5dp"
+                android:layout_marginTop="70dp"
+                android:gravity="start"
+                android:id="@+id/bookOptionsBookTitleTextView"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:textColor="@color/textSecondary"
+                android:textSize="16sp"
+                app:minTextSize="10sp"
+                android:text="@string/formFeedbackHint"
+                android:fontFamily="@font/roboto_medium"
+                android:maxLines="6"/>
+
+            <me.grantland.widget.AutofitTextView
+                android:padding="5dp"
+                android:gravity="start"
+                android:id="@+id/bookOptionsBookAuthorTitleTextView"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:textColor="@color/textSecondary"
+                android:textSize="15sp"
+                app:minTextSize="10sp"
+                android:text="Ryan Brown"
+                android:fontFamily="@font/poppins"
+                android:maxLines="3"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+        <LinearLayout
             android:layout_gravity="center"
-            android:maxLines="1"
+            android:gravity="center"
+            android:padding="10dp"
             android:layout_marginTop="20dp"
-            android:id="@+id/bookOptionsBookTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sample Book"
-            android:textColor="@color/textSecondary"
-            android:fontFamily="@font/poppins"
-            android:textSize="21sp"/>
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/bookOptionsNumbersOfDownloads"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:fontFamily="@font/poppins"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Downloads"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary"
+                    android:fontFamily="@font/roboto_medium"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/lightestGrey"
+                android:orientation="vertical"
+                android:layout_width="1dp"
+                android:layout_height="match_parent">
 
 
-        <TextView
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:id="@+id/bookOptionsBookAuthor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Author: Ryan Rey Anasco"
-            android:textColor="@color/textSecondary"
-            android:fontFamily="@font/poppins"
-            android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/bookOptionsNumbersOfReads"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:fontFamily="@font/poppins"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Reads"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary"
+                    android:fontFamily="@font/roboto_medium"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/lightestGrey"
+                android:orientation="vertical"
+                android:layout_width="1dp"
+                android:layout_height="match_parent">
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bookOptionsNumbersOfPages"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="14sp"
+                    android:visibility="invisible"
+                    android:textColor="@color/textSecondary"/>
+
+                <TextView
+                    android:id="@+id/bookOptionsAccessTypeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pages"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecondary"
+                    android:fontFamily="@font/roboto_medium"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
 
         <LinearLayout
-
+            android:gravity="center"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
 
 
 
@@ -70,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/buksuSecondary"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="Read Book"
+                android:text="open"
                 android:id="@+id/bookOptionsReadBtn"/>
 
             <com.google.android.material.button.MaterialButton
@@ -87,10 +241,22 @@
 
 
 
-        </LinearLayout>
+
 
 
     </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
 
 
 </FrameLayout>

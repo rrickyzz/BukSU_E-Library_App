@@ -9,9 +9,10 @@ android {
     buildToolsVersion '31.0.0'
 
     defaultConfig {
+
         applicationId "com.dacoders.buksue_libraryapp"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion 26
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -22,7 +23,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            debuggable true
         }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -86,6 +93,9 @@ dependencies {
     //rating bar
 
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
+
+
+    implementation 'me.grantland:autofittextview:0.2.1'
 
 
 }

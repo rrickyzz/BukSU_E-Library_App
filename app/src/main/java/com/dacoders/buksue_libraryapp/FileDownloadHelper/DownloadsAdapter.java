@@ -313,6 +313,8 @@ public class DownloadsAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHol
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
+
+
                         switch (menuItem.getItemId()){
                             case R.id.DeleteDownload:
 

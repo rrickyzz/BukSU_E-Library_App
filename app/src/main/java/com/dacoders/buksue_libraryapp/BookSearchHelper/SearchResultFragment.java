@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dacoders.buksue_libraryapp.Book.BookModelClass;
 import com.dacoders.buksue_libraryapp.CollectionDataAccessObject.Collection_DAO;
 import com.dacoders.buksue_libraryapp.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -123,14 +124,17 @@ public class SearchResultFragment extends Fragment {
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         String txt = String.valueOf(text);
         DatabaseReference collectionRef = databaseReference.child("collection");
+
        Query query = collectionRef.orderByChild("title").startAt(txt).endAt(txt+"~");
+        Query query2 = collectionRef.orderByChild("author").startAt(txt).endAt(txt+"~");
+        Query query3 = collectionRef.orderByChild("isbn").equalTo(txt);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
 
-
+                   // Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
 
                 }else{
 
@@ -151,8 +155,11 @@ public class SearchResultFragment extends Fragment {
             }
         });
 
-        FirebaseRecyclerOptions<Collection_DAO> options = new FirebaseRecyclerOptions.Builder<Collection_DAO>()
-                .setQuery(query,Collection_DAO.class).build();
+        FirebaseRecyclerOptions<BookModelClass> options = new FirebaseRecyclerOptions.Builder<BookModelClass>()
+                .setQuery(query,BookModelClass.class).build();
+
+
+
 
 
 
@@ -167,10 +174,12 @@ public class SearchResultFragment extends Fragment {
 
 
 
+
         adapter.startListening();
 
 
         recyclerView.setAdapter(adapter);
+
 
         adapter.notifyDataSetChanged();
 

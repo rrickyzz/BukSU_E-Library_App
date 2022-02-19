@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -17,12 +16,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.dacoders.buksue_libraryapp.CollectionDataAccessObject.Collection_DAO;
-import com.dacoders.buksue_libraryapp.HomeActivity;
+import com.dacoders.buksue_libraryapp.BookCollectionAdapter.Section.BySectionFragment;
 import com.dacoders.buksue_libraryapp.R;
 import com.dacoders.buksue_libraryapp.StudentModelClass;
-import com.dacoders.buksue_libraryapp.TabFragments.DownloadFragment;
-import com.dacoders.buksue_libraryapp.TabFragments.HomeFragment;
+import com.dacoders.buksue_libraryapp.TabFragments.NewsFeedFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -147,7 +144,7 @@ public class ProfileFragment extends Fragment {
     private  void returnToHomeFragment(){
         // goto home when user cancel to make profile changes
 
-            Fragment homeFragment = new HomeFragment();
+            Fragment homeFragment = new NewsFeedFragment();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,homeFragment).addToBackStack(null).commit();
 
 

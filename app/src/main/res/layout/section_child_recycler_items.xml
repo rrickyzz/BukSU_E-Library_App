@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/sectionChildElementFrame"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingStart="10dp"
+    android:paddingBottom="5dp"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/pdf" />
+
+    <me.grantland.widget.AutofitTextView
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:id="@+id/sectionItemBookTitleTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/textSecondary"
+        android:textSize="12sp"
+        app:minTextSize="10sp"
+        android:text="i am nobofy ryan rey"
+        android:fontFamily="@font/poppins"
+        android:maxLines="2"/>
+
+
+</LinearLayout>

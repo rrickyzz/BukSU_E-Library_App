@@ -47,6 +47,7 @@ public class SplashScreen extends AppCompatActivity implements NetworkChangeRece
         progressBar = findViewById(R.id.dotGrowProgressbar);
         checkConnection();
 
+
         mAuth = FirebaseAuth.getInstance();
         if(hasNoUser()) {
 
@@ -63,7 +64,7 @@ public class SplashScreen extends AppCompatActivity implements NetworkChangeRece
                     try {
                         progressBar.setVisibility(View.VISIBLE);
                         sleep(2 * 1000);
-                             if(isConnectedToNet){
+                          //   if(isConnectedToNet){
                                  if(hasNoUser())
                                  {
                                      startActivity(new Intent(SplashScreen.this,MainActivity.class));
@@ -76,13 +77,23 @@ public class SplashScreen extends AppCompatActivity implements NetworkChangeRece
                                      handleEmailVerification();
                                  }
                                  if(hasVerifiedUser()){
+                                  ///   if(sa)
+                                     Bundle bundle = getIntent().getExtras();
+                                     if(bundle!=null){
+                                         if(bundle.get("from").equals("download service")){
+                                             Intent intent =new Intent(SplashScreen.this,HomeActivity.class);
+                                             intent.putExtra("from","download service");
+                                             startActivity(intent);
+                                         }
+                                     }
+
                                      startActivity(new Intent(SplashScreen.this,HomeActivity.class));
                                      finish();
                                  }
 
 
 
-                             }
+                         //    }
 
 
 
@@ -101,7 +112,7 @@ public class SplashScreen extends AppCompatActivity implements NetworkChangeRece
 
             };
 
-        if(isConnectedToNet){
+     /*   if(isConnectedToNet){
 
         }else{
              SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(SplashScreen.this, SweetAlertDialog.ERROR_TYPE);
@@ -118,7 +129,7 @@ public class SplashScreen extends AppCompatActivity implements NetworkChangeRece
 
                 }
             });
-        }
+        }  */
 
 
         splashScreen.start();
